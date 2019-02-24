@@ -4,7 +4,7 @@ var userRoute = express.Router();
 var User = require('../models/user.model');
 var isAuthorized = require('../../../middlewares/authorization');
 
-userRoute.get('/all', function (req, res) {
+userRoute.get('/all', isAuthorized, function (req, res) {
     User.find().then((users) => {
         console.log('users fetched');
         res.json(users);
