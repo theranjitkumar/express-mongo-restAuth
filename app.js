@@ -6,7 +6,8 @@ var Logger = require('./middlewares/customLogger');
 
 // mongoose dependency start
 var mongoose = require('mongoose');
-var db = 'mongodb://localhost:27017/meanBlog';
+// const db = 'mongodb://localhost:27017/meanBlog'; // local systme connection string
+const db = 'mongodb+srv://mongo:mongo@cluster0-0epmu.mongodb.net/meanApp'; // mongodb cloud atlas connection string
 
 mongoose.connect(db, {
     useNewUrlParser: true
