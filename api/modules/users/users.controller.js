@@ -4,44 +4,64 @@ var userRoute = express.Router();
 var User = require('./user.model');
 var isAuthorized = require('../../middlewares/authorization');
 
-userRoute.get('/all', isAuthorized, function (req, res) {
+userRoute.get('/all', isAuthorized, (req, res) => {
     User.find().then((users) => {
-        console.log('users fetched');
-        res.json(users);
+        res.status(200).json({
+            status: 'success',
+            message: 'users fetched successfully',
+            data: users
+        });
     })
 })
 
-userRoute.get('/:id', isAuthorized, function (req, res) {
+userRoute.get('/:id', isAuthorized, (req, res) => {
     var id = req.params.id;
     User.findById(id).then((user) => {
-        res.json(user);
+        res.status(200).json({
+            status: 'success',
+            message: 'user fetched successfully',
+            data: user
+        });
     })
 })
 
-userRoute.delete('/:id', function (req, res) {
+userRoute.delete('/:id', (req, res) => {
     var id = req.params.id;
     User.findByIdAndDelete(id).then((user) => {
-        res.send('deleted successfully');
+        res.status(200).json({
+            status: 'sucess',
+            message: 'user deleted successfully'
+        });
     })
 })
 
-userRoute.put('/:id', function (req, res) {
+userRoute.put('/:id', (req, res) => {
     var id = req.params.id;
     User.findByIdAndUpdate(id, {
-        userName: 'updated name',
-    }).then(() => res.send('user updated'));
+        id: req.body.id,
+        name: req.body.name,
+        email: req.body.email,
+        mobileNo: req.body.mobileNo,
+        password: req.body.password
+    }).then(() => res.status(200).json({
+        status: 'sucess',
+        message: 'user updated successfully'
+    }));
 })
 
-userRoute.post('', function (req, res) {
+userRoute.post('/', (req, res) => {
     var user = new User({
-        userId: req.body.userId,
-        userName: req.body.userName,
-        userEmail: req.body.userEmail,
-        userMobieNo: req.body.userMobieNo
+        id: req.body.id,
+        name: req.body.name,
+        email: req.body.email,
+        mobileNo: req.body.mobileNo,
+        password: req.body.password
     });
     console.log(user);
-    user.save().then(() => res.send('new user saved'));
+    user.save().then(() => res.status(200).send({
+        status: 'sucess',
+        message:'new user saved'
+    }));
 })
-
 
 module.exports = userRoute;
