@@ -30,4 +30,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/user', userRoute);
 app.use('/post', postRoute);
 
+// custom error handler
+app.use((req, res, next) => {
+    const err = new Error('Not Found');
+    res.status(404);
+    next(err);
+})
+app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.json({
+        error: {message: err.message}
+    });
+})
+// custom error handler end
+
 module.exports = app;
