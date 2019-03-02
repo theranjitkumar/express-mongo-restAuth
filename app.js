@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var Logger = require('./middlewares/customLogger');
+var Logger = require('./api/middlewares/customLogger');
 
 // mongoose dependency start
 var mongoose = require('mongoose');
@@ -14,8 +14,8 @@ mongoose.connect(db, {
 })
 // mongoose dependency end
 
-var postRoute = require('./modules/blog/controllers/post.controller');
-var userRoute = require('./modules/users/controllers/users.controller');
+var postRoute = require('./api/modules/blog/post.controller');
+var userRoute = require('./api/modules/users/users.controller');
 
 var app = express();
 

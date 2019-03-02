@@ -1,8 +1,8 @@
 var express = require('express');
 var userRoute = express.Router();
 
-var User = require('../models/user.model');
-var isAuthorized = require('../../../middlewares/authorization');
+var User = require('./user.model');
+var isAuthorized = require('../../middlewares/authorization');
 
 userRoute.get('/all', isAuthorized, function (req, res) {
     User.find().then((users) => {
