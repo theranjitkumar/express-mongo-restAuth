@@ -5,14 +5,14 @@ var mongoose = require('mongoose');
 var User = require('./user.model');
 var isAuthorized = require('../../middlewares/authorization');
 
-userRoute.get('/all', isAuthorized, (req, res) => {
+userRoute.get('/', isAuthorized, (req, res) => {
     User.find().then((users) => {
         res.status(200).json({
             status: 'true',
             message: 'users fetched successfully',
             data: users
         });
-    }).catch((err) => res.json({
+    }).catch((err) => res.status(500).json({
         status: 'false',
         message: err
     }));
@@ -26,7 +26,7 @@ userRoute.get('/:id', isAuthorized, (req, res) => {
             message: 'user fetched successfully',
             data: user
         });
-    }).catch((err) => res.json({
+    }).catch((err) => res.status(500).json({
         status: 'false',
         message: err
     }));
@@ -39,7 +39,7 @@ userRoute.delete('/:id', (req, res) => {
             status: 'true',
             message: 'user deleted successfully'
         });
-    }).catch((err) => res.json({
+    }).catch((err) => res.status(500).json({
         status: 'false',
         message: err
     }));
@@ -56,7 +56,7 @@ userRoute.put('/:id', (req, res) => {
     }).then(() => res.status(200).json({
         status: 'true',
         message: 'user updated successfully'
-    })).catch((err) => res.json({
+    })).catch((err) => res.status(500).json({
         status: 'false',
         message: err
     }));
@@ -64,17 +64,17 @@ userRoute.put('/:id', (req, res) => {
 
 userRoute.post('/', (req, res) => {
     var user = new User({
-        // id: new mongoose.Types.ObjectId,
-        name: req.body.name,
+        id: new mongoose.Types.ObjectId,
+        name: req.body.name || 'Stranger',
         email: req.body.email,
-        mobileNo: req.body.mobileNo,
+        mobileNo: req.body.mobileNo || 'NA',
         password: req.body.password
     });
     console.log(user);
     user.save().then(() => res.status(200).json({
         status: 'true',
         message: 'new user saved'
-    })).catch((err) => res.json({
+    })).catch((err) => res.status(500).json({
         status: 'false',
         message: err
     }));

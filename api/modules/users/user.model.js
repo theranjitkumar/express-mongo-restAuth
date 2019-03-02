@@ -3,12 +3,18 @@ var Schema = mongoose.Schema;
 // user Schema
 var userSchema = new Schema({
     id: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     name: String,
-    email: String,
-    mobileNo: Number,
-    password: String
+    email: {
+        type: String,
+        required: 'Email is required'
+    },
+    mobileNo: String,
+    password: {
+        type: String,
+        required: 'Password is required'
+    }
 });
 module.exports = mongoose.model('User', userSchema);

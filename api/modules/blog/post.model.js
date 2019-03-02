@@ -1,9 +1,11 @@
+'use strict';
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postSchema = new Schema({
     userId: String,
-    postId: String,
+    id: String,
     title: String,
     body: String
 });
