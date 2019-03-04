@@ -14,6 +14,7 @@ mongoose.connect(db, {
 })
 // mongoose dependency end
 
+var accountRoute = require('./api/modules/account/account.controller');
 var userRoute = require('./api/modules/users/users.controller');
 var postRoute = require('./api/modules/blog/post.routes');
 
@@ -37,9 +38,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     }
 // })
 
+app.use('/login', accountRoute);
 app.use('/userS', userRoute);
 postRoute(app);
-// app.use('/postS', postRoute);
 
 // custom error handler
 app.use((req, res, next) => {
