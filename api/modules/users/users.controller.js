@@ -32,7 +32,7 @@ userRoute.get('/:id', isAuthorized, (req, res) => {
     }));
 })
 
-userRoute.delete('/:id', (req, res) => {
+userRoute.delete('/:id', isAuthorized, (req, res) => {
     var id = req.params.id;
     User.findByIdAndDelete(id).then((user) => {
         res.status(200).json({
@@ -45,7 +45,7 @@ userRoute.delete('/:id', (req, res) => {
     }));
 })
 
-userRoute.put('/:id', (req, res) => {
+userRoute.put('/:id', isAuthorized, (req, res) => {
     var id = req.params.id;
     User.findByIdAndUpdate(id, {
         id: req.body.id,

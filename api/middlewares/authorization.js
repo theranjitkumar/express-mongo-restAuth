@@ -1,9 +1,10 @@
-var express = require('express');
-// formate of token
-// Authorization: bearer <access_token>
+var jwt = require('jsonwebtoken');
+/* formate of token
+   Authorization: bearer <access_token>
+*/
 var isAuthorized = (req, res, next) => {
+
     const bearerHeader = req.header('Authorization');
-    console.log(bearerHeader);
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
@@ -11,6 +12,14 @@ var isAuthorized = (req, res, next) => {
     } else {
         res.sendStatus(401);
     }
+
+    jwt.verify(req.token, 'authsecret', (err, authData) => {
+        if (err) throw err;
+        console.log(authData);
+
+    })
+
+
     next();
 }
 module.exports = isAuthorized;
