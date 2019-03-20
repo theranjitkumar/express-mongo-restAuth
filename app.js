@@ -8,14 +8,14 @@ var env = require('./config/env');
 // mongoose dependency start
 var mongoose = require('mongoose');
 //  const db = process.env.localMongoDB; // local systme connection string
-// const db = `mongodb+srv://${process.env.MONGO_ATLAS_USER_NAME}:${process.env.MONGO_ATLAS_PWD}@cluster0-0epmu.mongodb.net/${process.env.MONGO_ATLAS_DB_NAME}`; // mongodb cloud atlas connection string
+const db = `mongodb+srv://${process.env.MONGO_ATLAS_USER_NAME}:${process.env.MONGO_ATLAS_PWD}@cluster0-0epmu.mongodb.net/${process.env.MONGO_ATLAS_DB_NAME}`; // mongodb cloud atlas connection string
 
-// mongoose.connect(db, {
-//     useNewUrlParser: true
-// })
+mongoose.connect(db, {
+    useNewUrlParser: true
+})
 // mongoose dependency end
 
-// console.log(process.env.PORT);
+// console.log(process.env.localMongoDB);
 
 
 var accountRoute = require('./api/modules/account/account.controller');
