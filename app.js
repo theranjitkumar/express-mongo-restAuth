@@ -7,9 +7,9 @@ var env = require('./config/env');
 
 // mongoose dependency start
 var mongoose = require('mongoose');
-//  const db = 'mongodb://localhost:27017/meanBlog'; // local systme connection string
+//  const db = process.env.localMongoDB; // local systme connection string
 const db = `mongodb+srv://${process.env.MONGO_ATLAS_USER_NAME}:${process.env.MONGO_ATLAS_PWD}@cluster0-0epmu.mongodb.net/${process.env.MONGO_ATLAS_DB_NAME}`; // mongodb cloud atlas connection string
-// console.log(process.env.MONGO_ATLAS_PWD);
+
 mongoose.connect(db, {
     useNewUrlParser: true
 })
@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.json({
-        error: {message: err.message}
+        error: { message: err.message }
     });
 })
 // custom error handler end
