@@ -3,16 +3,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var Logger = require('./api/middlewares/customLogger');
+var env = require('./config/env');
 
 // mongoose dependency start
 var mongoose = require('mongoose');
-// const db = 'mongodb://localhost:27017/meanBlog'; // local systme connection string
+//  const db = 'mongodb://localhost:27017/meanBlog'; // local systme connection string
 const db = `mongodb+srv://${process.env.MONGO_ATLAS_USER_NAME}:${process.env.MONGO_ATLAS_PWD}@cluster0-0epmu.mongodb.net/${process.env.MONGO_ATLAS_DB_NAME}`; // mongodb cloud atlas connection string
 // console.log(process.env.MONGO_ATLAS_PWD);
 mongoose.connect(db, {
     useNewUrlParser: true
 })
 // mongoose dependency end
+
+console.log(process.env.PORT);
+
 
 var accountRoute = require('./api/modules/account/account.controller');
 var userRoute = require('./api/modules/users/users.controller');
@@ -39,7 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // })
 
 app.use('/login', accountRoute);
-app.use('/userS', userRoute);
+app.use('/users', userRoute);
 postRoute(app);
 
 // custom error handler

@@ -1,7 +1,0 @@
-{
-    "env": {
-        "MONGO_ATLAS_DB_NAME": "meanApp",
-        "MONGO_ATLAS_USER_NAME": "mongo",
-        "MONGO_ATLAS_PWD": "mongo"
-    }
-}
