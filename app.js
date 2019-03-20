@@ -15,7 +15,7 @@ mongoose.connect(db, {
 })
 // mongoose dependency end
 
-console.log(process.env.PORT);
+// console.log(process.env.PORT);
 
 
 var accountRoute = require('./api/modules/account/account.controller');
