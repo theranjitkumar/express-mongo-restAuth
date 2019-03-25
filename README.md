@@ -41,3 +41,11 @@ live avelable: https://express-restapi.herokuapp.com/
 ####    posts endpoints:
     /posts (get, post)
     /posts/id (find, delete, update)
+
+    posts Model:
+    {
+        userId: 'testUser',
+        id: '101',
+        title: 'test title,
+        body: 'test body content'
+    }
