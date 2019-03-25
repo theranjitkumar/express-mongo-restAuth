@@ -8,10 +8,11 @@ live avelable: https://express-restapi.herokuapp.com/
     2. should be install mongodb
     3. Go to root directory
     4. RUN: 
-        npm install
-        npm start
+        npm install - To install packageg
+        npm start - To start node server
             OR
-        npm run start:dev To run on development mode on nodemon
+        npm run start:dev To start node server on development mode (on nodemon)
+        npm test - To run test cases
         
     4. create a user using /users route, (post) method,
     and minimal required field 
