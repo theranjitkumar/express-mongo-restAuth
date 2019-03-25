@@ -1,7 +1,7 @@
 # express-rest-api 
 A complete blog web api backend with exrepress and monodb
 
-live avelable: https://express-res-api.herokuapp.com/
+live avelable: https://express-restapi.herokuapp.com/
 
 ####    Pre Request:
     1. should be installed nodejs version 8+
