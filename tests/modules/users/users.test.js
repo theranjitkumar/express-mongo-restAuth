@@ -1,23 +1,23 @@
 const expect = require('chai').expect;
 
-const { hello } = require('../../../api/modules/users/users.controller');
+var express = require('express');
+var userRoute = express.Router();
+var mongoose = require('mongoose');
 
-let req = {
-    body: {},
-};
+var User = require('../../../api/modules/users/user.model');
+// var isAuthorized = require('../../middlewares/authorization');
 
-let res = {
-    sendCalledWith: '',
-    send: function(arg) { 
-        this.sendCalledWith = arg;
-    }
-};
+const USERROUTE = require('../../../api/modules/users/users.controller');
 
-describe('getAll users', function() {
-    describe('getAllUsers() function', function() {
-        it('Should error if get all users not fetched ', function() {
-            hello(req, res);
-            expect(res.sendCalledWith).to.contain('error');
+
+describe('Users get all', function () {
+    describe('userRoute.get()', function () {
+        it('should get all users list without error', function (done) {
+            User.find(function (err) {
+                if (err) done(err);
+                else done();
+            });
         });
-    })
+
+    });
 });
