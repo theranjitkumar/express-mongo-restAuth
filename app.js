@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 var Logger = require('./api/middlewares/customLogger');
 var env = require('./config/env');
 
@@ -25,6 +26,8 @@ var postRoute = require('./api/modules/blog/post.routes');
 var app = express();
 
 app.use(Logger);
+
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
