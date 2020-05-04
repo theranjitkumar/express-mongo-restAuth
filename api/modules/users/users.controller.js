@@ -3,9 +3,8 @@ var userRoute = express.Router();
 var mongoose = require('mongoose');
 
 var User = require('./user.model');
-var isAuthorized = require('../../middlewares/authorization');
 
-userRoute.get('/', isAuthorized, (req, res) => {
+userRoute.get('/', (req, res) => {
     User.find().then((users) => {
         res.status(200).json({
             status: 'true',
@@ -18,7 +17,7 @@ userRoute.get('/', isAuthorized, (req, res) => {
     }));
 })
 
-userRoute.get('/:id', isAuthorized, (req, res) => {
+userRoute.get('/:id', (req, res) => {
     var id = req.params.id;
     User.findById(id).then((user) => {
         res.status(200).json({
@@ -32,7 +31,7 @@ userRoute.get('/:id', isAuthorized, (req, res) => {
     }));
 })
 
-userRoute.delete('/:id', isAuthorized, (req, res) => {
+userRoute.delete('/:id', (req, res) => {
     var id = req.params.id;
     User.findByIdAndDelete(id).then((user) => {
         res.status(200).json({
@@ -45,7 +44,7 @@ userRoute.delete('/:id', isAuthorized, (req, res) => {
     }));
 })
 
-userRoute.put('/:id', isAuthorized, (req, res) => {
+userRoute.put('/:id', (req, res) => {
     var id = req.params.id;
     User.findByIdAndUpdate(id, {
         id: req.body.id,
