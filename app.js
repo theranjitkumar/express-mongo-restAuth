@@ -45,8 +45,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //     }
 // })
 
-app.use('/login', accountRoute);
-app.use('/users', userRoute);
+app.use('/openApi/login', accountRoute);
+app.use('/openApi/users', userRoute);
 postRoute(app);
 
 // custom error handler
